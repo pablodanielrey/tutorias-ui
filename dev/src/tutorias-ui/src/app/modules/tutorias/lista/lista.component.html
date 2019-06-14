@@ -10,6 +10,12 @@
 
 
 <div class="pantalla">
+
+
+
+    <button (click)="crearTutoria()" mat-flat-button color="primary">Crear Tutoría</button>
+
+
   <table mat-table [dataSource]="tutorias">
 
       <!-- Columna tutor -->
@@ -41,5 +47,4 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
   </table>
-  <button (click)="crearTutoria()">Crear Tutoría</button>
 </div>

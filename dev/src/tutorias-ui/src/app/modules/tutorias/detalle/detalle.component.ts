@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavegarService } from '../../../core/navegar.service';
 
 @Component({
   selector: 'app-detalle',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DetalleComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navegar: NavegarService) { }
 
   ngOnInit() {
   }
 
+  volver() {
+    this.navegar.volver().subscribe().unsubscribe();
+  }
 }

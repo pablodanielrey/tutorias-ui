@@ -10,6 +10,36 @@
 
 
 <div class="pantalla">
+  <table mat-table [dataSource]="tutorias">
 
-  
+      <!-- Columna tutor -->
+      <ng-container matColumnDef="tutor">
+        <th mat-header-cell *matHeaderCellDef> Tutor </th>
+        <td mat-cell *matCellDef="let tutoria">
+          {{tutoria.usuario.nombre}} {{tutoria.usuario.apellido}}
+        </td>
+      </ng-container>
+
+      <!-- Columna fecha -->
+      <ng-container matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef> Fecha </th>
+        <td mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'dd/mm/yy'}}</td>
+      </ng-container>
+
+      <!-- Columna cantidad de alumnos -->
+      <ng-container matColumnDef="alumnos">
+        <th mat-header-cell *matHeaderCellDef> Alumnos </th>
+        <td mat-cell *matCellDef="let tutoria">{{tutoria.nro_alumnos}}</td>
+      </ng-container>
+
+      <!-- Columna acciones -->
+      <ng-container matColumnDef="acciones">
+        <th mat-header-cell *matHeaderCellDef> Acciones </th>
+        <td mat-cell *matCellDef="let tutoria"><button (click)="detalle(tutoria.id)">Detalle</button></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+  </table>
+  <button (click)="crearTutoria()">Crear Tutoría</button>
 </div>

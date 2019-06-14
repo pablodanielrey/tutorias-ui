@@ -10,6 +10,10 @@ import { ListaComponent } from './modules/tutorias/lista/lista.component';
 import { CrearComponent } from './modules/tutorias/crear/crear.component';
 import { DetalleComponent } from './modules/tutorias/detalle/detalle.component';
 import { ModificarComponent } from './modules/tutorias/modificar/modificar.component';
+import { DetalleComponent as DetalleAsistencia } from './modules/tutorias/asistencia/detalle/detalle.component';
+import { EditarComponent as EditarAsistencia } from './modules/tutorias/asistencia/editar/editar.component';
+import { SeleccionarPersonaComponent as  SeleccionarPersonaAsistencia} from './modules/tutorias/asistencia/nueva/seleccionar-persona/seleccionar-persona.component';
+import { AltaComponent as  AltaAsistencia} from './modules/tutorias/asistencia/nueva/alta/alta.component';
 
 const routes: Routes = [
   { path: 'debug', component: DebugComponent },
@@ -27,7 +31,21 @@ const routes: Routes = [
           { path: 'listar', component: ListaComponent },
           { path: 'crear', component: CrearComponent },
           { path: 'detalle/:id', component: DetalleComponent },
-          { path: 'modificar/:id', component: ModificarComponent }
+          { path: 'modificar/:id', component: ModificarComponent },
+          {
+            path: 'asistencia',
+            children: [
+              { path: 'detalle/:id', component:  DetalleAsistencia},
+              { path: 'editar/:id', component:  EditarAsistencia},
+              {
+                path: 'nueva',
+                children: [
+                  { path: 'seleccionar-persona/:id', component: SeleccionarPersonaAsistencia },
+                  { path: 'alta/:id', component: AltaAsistencia }
+                ]
+              }
+            ]
+          }
         ]
       }
      ]     

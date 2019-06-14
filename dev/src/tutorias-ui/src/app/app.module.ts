@@ -12,6 +12,9 @@ import { ListaComponent } from './modules/tutorias/lista/lista.component';
 import { CrearComponent } from './modules/tutorias/crear/crear.component';
 import { ModificarComponent } from './modules/tutorias/modificar/modificar.component';
 import { DetalleComponent } from './modules/tutorias/detalle/detalle.component';
+import { SeleccionarPersonaComponent } from './modules/tutorias/asistencia/nueva/seleccionar-persona/seleccionar-persona.component';
+import { AltaComponent } from './modules/tutorias/asistencia/nueva/alta/alta.component';
+import { EditarComponent } from './modules/tutorias/asistencia/editar/editar.component';
 
 
 @NgModule({
@@ -21,7 +24,10 @@ import { DetalleComponent } from './modules/tutorias/detalle/detalle.component';
     ListaComponent,
     CrearComponent,
     ModificarComponent,
-    DetalleComponent
+    DetalleComponent,
+    SeleccionarPersonaComponent,
+    AltaComponent,
+    EditarComponent
   ],
   imports: [
     BrowserModule,

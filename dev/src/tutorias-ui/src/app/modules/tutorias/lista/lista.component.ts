@@ -1,28 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavegarService } from '../../../core/navegar.service';
-
-const TUTORIAS_DATA: any[] = [
-  {
-    id: 1,
-    usuario: {
-      apellido: 'Blanco',
-      nombre: 'Walter',
-      dni: '1234'
-    },
-    fecha: new Date(),
-    nro_alumnos: 10
-  },
-  {
-    id: 2,
-    usuario: {
-      apellido: 'Pais',
-      nombre: 'Emanuel',
-      dni: '4321'
-    },
-    fecha: new Date(),
-    nro_alumnos: 8
-  },  
-];
+import { TutoriasService } from '../../../shared/services/tutorias.service';
+import { Tutoria } from '../../../shared/entities/tutoria';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-lista',
@@ -31,11 +11,12 @@ const TUTORIAS_DATA: any[] = [
 })
 export class ListaComponent implements OnInit {
   displayedColumns: string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];
-  tutorias = TUTORIAS_DATA;
+  tutorias$: Observable<Array<Tutoria>>;
 
-  constructor(private navegar: NavegarService) { }
+  constructor(private navegar: NavegarService, private service: TutoriasService) { }
 
   ngOnInit() {
+    this.tutorias$ = this.service.listarTutorias(null, null);
   }
 
   detalle(id:string) {

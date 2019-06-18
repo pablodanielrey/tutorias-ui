@@ -40,7 +40,7 @@ export class ListaComponent implements OnInit {
 
   detalle(id:string) {
     let s = this.navegar.navegar({
-      url: '/sistema/tutorias/detalle/' + id,
+      url: '/sistema/tutorias/asistencia/detalle/' + id,
       params: { }
     }).subscribe(_ => {
       s.unsubscribe();

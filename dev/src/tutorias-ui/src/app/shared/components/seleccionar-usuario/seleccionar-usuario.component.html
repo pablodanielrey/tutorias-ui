@@ -1,0 +1,24 @@
+<!-- FORMULARIO DE BUSQUEDA -->
+<form [formGroup]='form'>
+  <mat-form-field appearance="fill" class="contenedorFormulario">
+      <input matInput placeholder="Buscar Usuario" aria-label="State" [matAutocomplete]="auto" formControlName="campoBusqueda" >
+      <mat-icon class="animacionCargando" *ngIf="cargando" matSuffix>clear</mat-icon>
+      <mat-icon *ngIf="!cargando" matSuffix>search</mat-icon>
+
+      <mat-autocomplete #auto="matAutocomplete" (optionSelected)='autocomplete_seleccionado($event)' [displayWith]="display_usuario">
+          <mat-option *ngFor='let p of (personas$ | async)' [value]='p'>
+              <div class="itemLugar" >
+                  <i class="material-icons-outlined iconoLista">account_circle</i>
+                  <span class="nombre">{{p.nombre}} {{p.apellido}}  </span>
+                  <small>&nbsp; DNI {{p.dni}}</small>
+              </div>
+          </mat-option>
+      </mat-autocomplete>
+
+      <mat-hint *ngIf='existen_resultados$ | async'>
+          <p>No se encontraron resultados!</p>
+      </mat-hint>          
+  </mat-form-field>
+
+</form>
+

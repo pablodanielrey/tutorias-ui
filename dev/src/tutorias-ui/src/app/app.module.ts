@@ -16,6 +16,10 @@ import { SeleccionarPersonaComponent } from './modules/tutorias/asistencia/nueva
 import { AltaComponent } from './modules/tutorias/asistencia/nueva/alta/alta.component';
 import { EditarComponent } from './modules/tutorias/asistencia/editar/editar.component';
 import { DetalleComponent as DetalleAsistenciaComponent } from './modules/tutorias/asistencia/detalle/detalle.component';
+import { TutoriasService } from './shared/services/tutorias.service';
+import { SeleccionarUsuarioComponent } from './shared/components/seleccionar-usuario/seleccionar-usuario.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -27,6 +31,7 @@ import { DetalleComponent as DetalleAsistenciaComponent } from './modules/tutori
     ModificarComponent,
     DetalleComponent,
     SeleccionarPersonaComponent,
+    SeleccionarUsuarioComponent,
     AltaComponent,
     EditarComponent,
     DetalleAsistenciaComponent
@@ -34,11 +39,15 @@ import { DetalleComponent as DetalleAsistenciaComponent } from './modules/tutori
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,    
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    BrowserAnimationsModule,
     CoreModule
   ],
-  providers: [],
+  providers: [
+    TutoriasService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

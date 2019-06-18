@@ -41,7 +41,7 @@ const routes: Routes = [
                 path: 'nueva',
                 children: [
                   { path: 'seleccionar-persona/:id', component: SeleccionarPersonaAsistencia },
-                  { path: 'alta/:id', component: AltaAsistencia }
+                  { path: 'alta/:id/:pid', component: AltaAsistencia }
                 ]
               }
             ]

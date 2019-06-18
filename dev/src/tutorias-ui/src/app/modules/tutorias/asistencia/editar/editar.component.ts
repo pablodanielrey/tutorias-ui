@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavegarService } from '../../../../core/navegar.service';
 
 @Component({
   selector: 'app-editar',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class EditarComponent implements OnInit {
 
-  constructor() { }
+  constructor(private navegar: NavegarService) { }
 
   ngOnInit() {
+  }
+
+  volver() {
+    this.navegar.volver().subscribe().unsubscribe();
   }
 
 }

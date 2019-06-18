@@ -10,7 +10,7 @@ import { ListaComponent } from './modules/tutorias/lista/lista.component';
 import { CrearComponent } from './modules/tutorias/crear/crear.component';
 import { DetalleComponent } from './modules/tutorias/detalle/detalle.component';
 import { ModificarComponent } from './modules/tutorias/modificar/modificar.component';
-import { DetalleComponent as DetalleAsistencia } from './modules/tutorias/asistencia/detalle/detalle.component';
+import { DetalleComponent as DetalleAsistenciaComponent } from './modules/tutorias/asistencia/detalle/detalle.component';
 import { EditarComponent as EditarAsistencia } from './modules/tutorias/asistencia/editar/editar.component';
 import { SeleccionarPersonaComponent as  SeleccionarPersonaAsistencia} from './modules/tutorias/asistencia/nueva/seleccionar-persona/seleccionar-persona.component';
 import { AltaComponent as  AltaAsistencia} from './modules/tutorias/asistencia/nueva/alta/alta.component';
@@ -35,7 +35,7 @@ const routes: Routes = [
           {
             path: 'asistencia',
             children: [
-              { path: 'detalle/:id', component:  DetalleAsistencia},
+              { path: 'detalle/:id', component:  DetalleAsistenciaComponent},
               { path: 'editar/:id', component:  EditarAsistencia},
               {
                 path: 'nueva',

@@ -15,6 +15,7 @@ import { DetalleComponent } from './modules/tutorias/detalle/detalle.component';
 import { SeleccionarPersonaComponent } from './modules/tutorias/asistencia/nueva/seleccionar-persona/seleccionar-persona.component';
 import { AltaComponent } from './modules/tutorias/asistencia/nueva/alta/alta.component';
 import { EditarComponent } from './modules/tutorias/asistencia/editar/editar.component';
+import { DetalleComponent as DetalleAsistenciaComponent } from './modules/tutorias/asistencia/detalle/detalle.component';
 
 
 @NgModule({
@@ -27,7 +28,8 @@ import { EditarComponent } from './modules/tutorias/asistencia/editar/editar.com
     DetalleComponent,
     SeleccionarPersonaComponent,
     AltaComponent,
-    EditarComponent
+    EditarComponent,
+    DetalleAsistenciaComponent
   ],
   imports: [
     BrowserModule,

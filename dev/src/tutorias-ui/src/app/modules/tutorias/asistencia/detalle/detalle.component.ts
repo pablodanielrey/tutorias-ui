@@ -1,30 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NavegarService } from '../../../../core/navegar.service';
-
-const TUTORIAS_DATA: any[] = [
-  {
-    id: 1,
-    alumno: {
-      apellido: 'Blanco',
-      nombre: 'Walter',
-      dni: '12344587',
-      legajo: '12688/8'
-    },
-    situacion: 'Económica',
-    fecha: new Date()
-  },
-  {
-    id: 2,
-    alumno: {
-      apellido: 'Pais',
-      nombre: 'Emanuel',
-      dni: '43210125',
-      legajo: '1234/7'
-    },
-    situacion: 'Otra',
-    fecha: new Date()
-  },  
-];
+import { Observable } from 'rxjs';
+import { AsistenciaTutoria, Tutoria } from '../../../../shared/entities/tutoria';
+import { TutoriasService } from '../../../../shared/services/tutorias.service';
+import { ActivatedRoute } from '@angular/router';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-detalle',
@@ -34,12 +14,29 @@ const TUTORIAS_DATA: any[] = [
 export class DetalleComponent implements OnInit {
 
   displayedColumns: string[] = ['alumno_nombre', 'alumno_dni', 'alumno_legajo', 'situacion', 'fecha', 'hora', 'acciones'];
-  tutorias = TUTORIAS_DATA;  
-  id: string = '1';
+  tutorias$: Observable<AsistenciaTutoria[]>; 
+  tutoria$: Observable<Tutoria>;
 
-  constructor(private navegar: NavegarService) { }
+  constructor(
+    private navegar: NavegarService,
+    private service: TutoriasService,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.tutoria$ = this.route.paramMap.pipe(
+      switchMap( params => {
+        if (params.has('id')) {
+          return this.service.buscarTutoria(params.get('id'));
+        } else {
+          return null;
+        }
+      })
+    );
+
+    this.tutorias$ = this.tutoria$.pipe(
+      map( t => t.asistencia)
+    )
   }
 
   volver() {
@@ -47,21 +44,29 @@ export class DetalleComponent implements OnInit {
   }
   
   detalle() {
-    let s = this.navegar.navegar({
-      url: '/sistema/tutorias/detalle/' + this.id,
-      params: { }
-    }).subscribe(_ => {
+    let s = this.tutoria$.pipe(
+      switchMap( t => 
+        this.navegar.navegar({
+          url: '/sistema/tutorias/detalle/' + t.id,
+          params: { }
+        })
+      )
+    ).subscribe(_ => {
       s.unsubscribe();
     })
   }
 
   agregarTutoria() {
-    let s = this.navegar.navegar({
-      url: '/sistema/tutorias/asistencia/nueva/seleccionar-persona/' + this.id,
-      params: { }
-    }).subscribe(_ => {
+    let s = this.tutoria$.pipe(
+      switchMap( t => 
+        this.navegar.navegar({
+          url: '/sistema/tutorias/asistencia/nueva/seleccionar-persona/' + t.id,
+          params: { }
+        })
+      )
+    ).subscribe(_ => {
       s.unsubscribe();
-    })
+    });
   }  
 
   modificar(id: string) {

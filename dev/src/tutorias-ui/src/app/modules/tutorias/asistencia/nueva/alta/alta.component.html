@@ -1,3 +1,10 @@
-<p>
-  alta works!
-</p>
+<mat-toolbar-row>
+  <button class="btnVolver" mat-button color="primary" (click)='volver()'> <mat-icon>undo </mat-icon> VOLVER </button>
+  <!-- <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button> -->
+  <span class="ruta">&nbsp; Tutorias - Agregar Alumno</span>
+</mat-toolbar-row>
+
+<mat-divider></mat-divider>
+
+<div>Ids de personas: {{ (params$ | async)?.pids }}</div>
+<div>Id de la tutoria: {{ (params$ | async)?.id }}</div>

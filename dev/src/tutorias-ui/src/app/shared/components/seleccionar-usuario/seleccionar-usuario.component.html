@@ -22,3 +22,19 @@
 
 </form>
 
+<!-- CONTENEDOR DE LUGARES SELECCIONADOS -->
+<div *ngIf='seleccionados.length > 0' class="contenedorSeleccionados">
+    <mat-card >
+        <mat-card-content>
+            <div class="textLS">Alumnos Seleccionados</div>
+
+            <mat-chip-list *ngFor='let t of seleccionados'>
+                <mat-chip>
+                  {{t.nombre}}<mat-icon matChipRemove (click)='deseleccionar(t)'>cancel</mat-icon>
+                </mat-chip>
+            </mat-chip-list>
+        </mat-card-content>
+    </mat-card>
+   
+    <button class="btnSiguiente" mat-flat-button color="primary" (click)='finalizar_seleccion()'>Siguiente</button>
+</div>

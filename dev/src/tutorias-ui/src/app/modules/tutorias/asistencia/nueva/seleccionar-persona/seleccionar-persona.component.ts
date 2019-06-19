@@ -17,11 +17,11 @@ export class SeleccionarPersonaComponent implements OnInit {
     this.navegar.volver().subscribe().unsubscribe();
   }
 
-  seleccionado(persona) {
-    // this.crear(persona);
+  seleccionado(personas) {
+    let ids = personas.map( p => p.id);
     let s = this.navegar.navegar({
-      url: '/sistema/tutorias/asistencia/nueva/alta/2/' + persona.id,
-      params: { }
+      url: '/sistema/tutorias/asistencia/nueva/alta/2',
+      params: { ids: ids}
     }).subscribe(_ => {
       s.unsubscribe();
     })

@@ -57,6 +57,12 @@ export class TutoriasService {
       'apellido': 'Pais',
       'dni': '41125478',
       'legajo': '145877/7'
+    }), new Usuario({
+      'id': '2',
+      'nombre': 'Walter',
+      'apellido': 'Blanco',
+      'dni': '45874147',
+      'legajo': '785877/8'
     })]);
   }  
   

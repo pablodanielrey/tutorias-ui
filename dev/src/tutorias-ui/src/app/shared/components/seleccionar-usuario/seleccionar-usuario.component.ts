@@ -13,11 +13,12 @@ import { TutoriasService } from '../../services/tutorias.service';
 export class SeleccionarUsuarioComponent implements OnInit {
 
   @Output()
-  seleccionado: EventEmitter<any> = new EventEmitter<any>();
+  seleccionado: EventEmitter<any[]> = new EventEmitter<any[]>();
 
   private cargando: boolean = false;
   private existen_resultados$: Observable<boolean>;
   personas$: Observable<any[]>;
+  seleccionados: any[] = [];
 
   form : FormGroup = null;
 
@@ -65,6 +66,17 @@ export class SeleccionarUsuarioComponent implements OnInit {
   }
 
   private _seleccionar_persona(persona:any) {
-    this.seleccionado.emit(persona);
+    if (this.seleccionados.filter(v => v.id == persona.id).length > 0) {
+      return;
+    }
+    this.seleccionados.push(persona);
   }
+
+  finalizar_seleccion() {
+    this.seleccionado.emit(this.seleccionados);
+  }  
+
+  deseleccionar(l) {
+    this.seleccionados = this.seleccionados.filter(v => v.id != l.id);
+  }    
 }

@@ -10,7 +10,7 @@
     <button (click)="agregarTutoria()" mat-flat-button color="primary">Agregar Tutoría</button>
     <button (click)="detalle()" mat-flat-button color="primary">Detalle</button>
 
-    <table mat-table [dataSource]="tutorias">
+    <table mat-table [dataSource]="tutorias$ | async">
 
         <!-- Columna nombre del alumno -->
         <ng-container matColumnDef="alumno_nombre">

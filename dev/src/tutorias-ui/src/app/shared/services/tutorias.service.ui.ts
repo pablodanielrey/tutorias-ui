@@ -47,7 +47,7 @@ export class TutoriasService {
       nro_alumnos: 2
     }),
     new Tutoria({
-      id: '1',
+      id: '2',
       fecha: new Date(),
       aula: '101',
       tutor: new Usuario({
@@ -56,10 +56,24 @@ export class TutoriasService {
         nombre: 'Emanuel',
         dni: '1234'
       }),
-      asistencia: []
+      asistencia: [
+        new AsistenciaTutoria({
+          id: '1',
+          fecha: new Date(),
+          alumno: new Usuario({
+            id: '2',
+            apellido: 'Rey',
+            nombre: 'Pablo',
+            dni: '41123987',
+            legajo: '656733/8'
+          }),
+          situacion: 'Económica'
+        })
+      ],
+      nro_alumnos: 1
     }),
     new Tutoria({
-      id: '1',
+      id: '3',
       fecha: new Date('06-20-2019'),
       aula: '101',
       tutor: new Usuario({
@@ -68,7 +82,32 @@ export class TutoriasService {
         nombre: 'Emanuel',
         dni: '1234'
       }),
-      asistencia: [],
+      asistencia: [
+        new AsistenciaTutoria({
+          id: '1',
+          fecha: new Date(),
+          alumno: new Usuario({
+            id: '2',
+            apellido: 'Rey',
+            nombre: 'Pablo',
+            dni: '41123987',
+            legajo: '656733/8'
+          }),
+          situacion: 'Económica'
+        }),
+        new AsistenciaTutoria({
+          id: '1',
+          fecha: new Date(),
+          alumno: new Usuario({
+            id: '1',
+            apellido: 'Pais',
+            nombre: 'Emanuel',
+            dni: '39147896',
+            legajo: '456787/8'
+          }),
+          situacion: 'Económica'
+        })
+      ],
       nro_alumnos: 2
     })  
   ];
@@ -91,7 +130,9 @@ export class TutoriasService {
     })]);
   }  
   
-  crearTutoria(fecha: Date, aula: string): Observable<string> {
+  crearTutoria(data: any): Observable<string> {
+    let t = new Tutoria({data});
+    this.tutorias.push(t);
     return null;
   }
 

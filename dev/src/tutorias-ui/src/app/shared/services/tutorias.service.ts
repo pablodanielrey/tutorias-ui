@@ -14,7 +14,7 @@ export class TutoriasService {
     return null;
   }
   
-  crearTutoria(fecha: Date, aula: string): Observable<string> {
+  crearTutoria(data: any): Observable<string> {
     return null;
   }
 

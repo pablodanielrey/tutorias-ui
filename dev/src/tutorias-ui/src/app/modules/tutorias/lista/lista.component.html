@@ -8,40 +8,40 @@
 
 <div class="pantalla">
 
+  <button (click)="crearTutoria()" mat-flat-button color="primary">Crear Tutoría</button>
 
-
-    <button (click)="crearTutoria()" mat-flat-button color="primary">Crear Tutoría</button>
-
-
-  <table mat-table [dataSource]="tutorias$ |async">
+  <mat-table matSort [dataSource]="tutorias_paginadas$ |async">
 
       <!-- Columna tutor -->
       <ng-container matColumnDef="tutor">
-        <th mat-header-cell *matHeaderCellDef> Tutor </th>
-        <td mat-cell *matCellDef="let tutoria">
+        <mat-header-cell mat-sort-header *matHeaderCellDef> Tutor </mat-header-cell>
+        <mat-cell *matCellDef="let tutoria">
           {{tutoria.tutor.nombre}} {{tutoria.tutor.apellido}}
-        </td>
+        </mat-cell>
       </ng-container>
 
       <!-- Columna fecha -->
       <ng-container matColumnDef="fecha">
-        <th mat-header-cell *matHeaderCellDef> Fecha </th>
-        <td mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'dd/MM/yy'}}</td>
+        <mat-header-cell mat-sort-header *matHeaderCellDef> Fecha </mat-header-cell>
+        <mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'dd/MM/yy'}}</mat-cell>
       </ng-container>
 
       <!-- Columna cantidad de alumnos -->
       <ng-container matColumnDef="alumnos">
-        <th mat-header-cell *matHeaderCellDef> Alumnos </th>
-        <td mat-cell *matCellDef="let tutoria">{{tutoria.nro_alumnos}}</td>
+        <mat-header-cell mat-sort-header *matHeaderCellDef> Alumnos </mat-header-cell>
+        <mat-cell *matCellDef="let tutoria">{{tutoria.nro_alumnos}}</mat-cell>
       </ng-container>
 
       <!-- Columna acciones -->
       <ng-container matColumnDef="acciones">
-        <th mat-header-cell *matHeaderCellDef> Acciones </th>
-        <td mat-cell *matCellDef="let tutoria"><button (click)="detalle(tutoria.id)">Detalle</button></td>
+        <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+        <mat-cell *matCellDef="let tutoria"><button (click)="detalle(tutoria.id)">Detalle</button></mat-cell>
       </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
-  </table>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>    
+  </mat-table>
+
+  <mat-paginator [length]="tamano$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
+
 </div>

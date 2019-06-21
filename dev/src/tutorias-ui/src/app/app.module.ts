@@ -20,6 +20,7 @@ import { TutoriasService } from './shared/services/tutorias.service';
 import { SeleccionarUsuarioComponent } from './shared/components/seleccionar-usuario/seleccionar-usuario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { MatPaginatorModule } from '@angular/material';
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,    
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
-    CoreModule
+    CoreModule,
+    MatPaginatorModule
   ],
   providers: [
     TutoriasService

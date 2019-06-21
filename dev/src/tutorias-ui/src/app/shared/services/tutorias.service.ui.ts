@@ -45,6 +45,31 @@ export class TutoriasService {
         })
       ],
       nro_alumnos: 2
+    }),
+    new Tutoria({
+      id: '1',
+      fecha: new Date(),
+      aula: '101',
+      tutor: new Usuario({
+        id: '3',
+        apellido: 'Pais',
+        nombre: 'Emanuel',
+        dni: '1234'
+      }),
+      asistencia: []
+    }),
+    new Tutoria({
+      id: '1',
+      fecha: new Date('06-20-2019'),
+      aula: '101',
+      tutor: new Usuario({
+        id: '3',
+        apellido: 'Pais',
+        nombre: 'Emanuel',
+        dni: '1234'
+      }),
+      asistencia: [],
+      nro_alumnos: 2
     })  
   ];
 

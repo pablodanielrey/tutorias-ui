@@ -6,7 +6,7 @@ export class Tutoria {
     aula: string;
     tutor: Usuario;
     asistencia: Array<AsistenciaTutoria>;
-    nro_alumnos: number;
+    nro_alumnos: number = 0;
 
     constructor(o:Object) {
         try {

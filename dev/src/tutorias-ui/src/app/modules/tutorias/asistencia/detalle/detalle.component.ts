@@ -40,7 +40,7 @@ export class DetalleComponent implements OnInit {
   }
 
   volver() {
-    this.navegar.volver().subscribe().unsubscribe();
+    this.navegar.volver('/sistema/tutorias/listar', {}).subscribe().unsubscribe();
   }
   
   detalle() {

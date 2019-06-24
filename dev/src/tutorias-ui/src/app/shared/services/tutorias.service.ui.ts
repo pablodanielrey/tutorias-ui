@@ -7,6 +7,7 @@ import { Tutoria, AsistenciaTutoria } from '../entities/tutoria';
   providedIn: 'root'
 })
 export class TutoriasService {
+  id_actual = 3;
   tutorias: Array<Tutoria> = [
     new Tutoria({
       id: '1',
@@ -131,9 +132,19 @@ export class TutoriasService {
   }  
   
   crearTutoria(data: any): Observable<string> {
-    let t = new Tutoria({data});
+    let t = new Tutoria(data);
+    this.id_actual = this.id_actual + 1;
+    t.id = this.id_actual.toString();
+    t.tutor = new Usuario({
+      'id': '2',
+      'nombre': 'Roberto',
+      'apellido': 'Blanco',
+      'dni': '45874147',
+      'legajo': '785877/8'
+    });
     this.tutorias.push(t);
-    return null;
+    console.log(t);
+    return of(t.id);
   }
 
   listarTutorias(inicio: Date, fin: Date): Observable<Tutoria[]> {

@@ -20,7 +20,7 @@ import { TutoriasService } from './shared/services/tutorias.service';
 import { SeleccionarUsuarioComponent } from './shared/components/seleccionar-usuario/seleccionar-usuario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
 
 
 @NgModule({
@@ -48,7 +48,8 @@ import { MatPaginatorModule } from '@angular/material';
     MatPaginatorModule
   ],
   providers: [
-    TutoriasService
+    TutoriasService,
+    {provide: MAT_DATE_LOCALE, useValue: 'es-AR'}
   ],
   bootstrap: [AppComponent]
 })

@@ -61,6 +61,7 @@ export class ListaComponent implements OnInit {
       tap( v=> console.log(v)),
       switchMap( orden => {
         return this.tutorias$.pipe(
+          tap(v => console.log(v)),
           map( ts => ts.sort((a,b)=> {
             let s = orden;
             console.log(s);

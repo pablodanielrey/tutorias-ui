@@ -15,6 +15,11 @@ export class TutoriasService {
   }
   
   crearTutoria(data: any): Observable<string> {
+    /*
+    Crea una tutoria con fecha y aula seleccionada
+    (Genera QR en la API cuando le da guardar y el tutor es el usuario logueado)
+    data: {fecha: date, aula: string}
+    */
     return null;
   }
 

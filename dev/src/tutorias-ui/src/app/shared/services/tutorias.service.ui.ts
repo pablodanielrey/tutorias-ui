@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Usuario } from '../entities/usuario';
 import { Tutoria, AsistenciaTutoria } from '../entities/tutoria';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -128,7 +129,7 @@ export class TutoriasService {
       'apellido': 'Blanco',
       'dni': '45874147',
       'legajo': '785877/8'
-    })]);
+    })]).pipe(delay(500));
   }  
   
   crearTutoria(data: any): Observable<string> {
@@ -144,11 +145,11 @@ export class TutoriasService {
     });
     this.tutorias.push(t);
     console.log(t);
-    return of(t.id);
+    return of(t.id).pipe(delay(500));
   }
 
   listarTutorias(inicio: Date, fin: Date): Observable<Tutoria[]> {
-    return of(this.tutorias);
+    return of(this.tutorias).pipe(delay(1000));
   }
 
   modificarTutoria(tutoria: Tutoria): Observable<string> {

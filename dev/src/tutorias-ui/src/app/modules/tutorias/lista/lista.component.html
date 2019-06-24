@@ -9,7 +9,6 @@
 <div class="pantalla">
 
   <button (click)="crearTutoria()" mat-flat-button color="primary">Crear Tutoría</button>
-
   <mat-table matSort [dataSource]="tutorias_paginadas$ |async">
 
       <!-- Columna tutor -->
@@ -41,7 +40,12 @@
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>    
   </mat-table>
-
+  <mat-card *ngIf="cargando$ | async" class="cargando">
+      <mat-progress-spinner 
+        color="primary" 
+        mode="indeterminate">
+      </mat-progress-spinner>
+  </mat-card>
   <mat-paginator [length]="tamano$ | async" [pageSize]="10" [pageSizeOptions]="[10, 25, 50]"></mat-paginator>
 
 </div>

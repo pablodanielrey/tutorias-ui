@@ -1,10 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, NgZone } from '@angular/core';
 import { NavegarService } from '../../../core/navegar.service';
 import { TutoriasService } from '../../../shared/services/tutorias.service';
 import { Tutoria } from '../../../shared/entities/tutoria';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { PageEvent, Sort, MatSort, MatPaginator } from '@angular/material';
-import { switchMap, map, tap } from 'rxjs/operators';
+import { switchMap, map, tap, finalize } from 'rxjs/operators';
+import { PreloadService } from '../../../core/preload/preload.service';
 
 @Component({
   selector: 'app-lista',
@@ -25,8 +26,14 @@ export class ListaComponent implements OnInit {
   ordenar$ = new BehaviorSubject<Sort>({active:'tutor',direction:''});
   pagina$ = new BehaviorSubject<PageEvent>({length: 0, pageIndex: 0, pageSize: 10});  
 
+  cargando$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);  
+
   
-  constructor(private navegar: NavegarService, private service: TutoriasService) { }
+  constructor(
+    private navegar: NavegarService,
+    private service: TutoriasService,
+    private zone: NgZone
+  ) { }
 
   private ordenar_por_tutor(a: Tutoria, b: Tutoria, direction: string) {
     let n1 = (direction == 'desc') ? a : b;
@@ -52,13 +59,13 @@ export class ListaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.cargando$.next(true);
     this.tutorias$ = this.service.listarTutorias(null, null);
     this.tamano$ = this.tutorias$.pipe(
       map(ts => (ts != null)? ts.length : 0)
     )
 
     this.tutorias_ordenadas$ = this.ordenar$.pipe(
-      tap( v=> console.log(v)),
       switchMap( orden => {
         return this.tutorias$.pipe(
           tap(v => console.log(v)),
@@ -77,14 +84,14 @@ export class ListaComponent implements OnInit {
     );
 
     this.tutorias_paginadas$ = combineLatest(this.pagina$, this.tutorias_ordenadas$).pipe(
-      tap( v => console.log(v)),
       map(valores => {
         let pagina = valores[0];
         let tutorias = valores[1];
         let i = pagina.pageIndex * pagina.pageSize;
         let f = i + pagina.pageSize;
         return tutorias.slice(i,f);
-      })
+      }),
+      tap( _ =>this.cargando$.next(false) )
     )
   }
 

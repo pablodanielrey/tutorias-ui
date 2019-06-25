@@ -6,6 +6,9 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { Usuario } from '../../../../../shared/entities/usuario';
 import { switchMap } from 'rxjs/operators';
 import { TutoriasService } from '../../../../../shared/services/tutorias.service';
+import { Situacion } from '../../../../../shared/entities/tutoria';
+import { PreloadService } from '../../../../../core/preload/preload.service';
+import { ModalService } from '../../../../../core/modal/modal.service';
 
 @Component({
   selector: 'app-alta',
@@ -18,15 +21,18 @@ export class AltaComponent implements OnInit {
     situacion: ['', Validators.required]
   });
 
-  alumnos$: Observable<Usuario[]>;
+  situaciones$: Observable<Situacion[]>;
   
   params$: Observable<any>;
+  subscriptions = [];
 
   constructor(
     private route: ActivatedRoute,
     private navegar: NavegarService,
     private service: TutoriasService,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private preload: PreloadService,
+    private modal: ModalService
   ) { }
 
   ngOnInit() {
@@ -41,21 +47,49 @@ export class AltaComponent implements OnInit {
       }
     );
 
-    this.alumnos$ = this.params$.pipe(
-      switchMap( params => {
-        return null;
-      })
-    )
+    this.situaciones$ = this.service.obtenerSituaciones();
 
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }
   volver() {
     this.navegar.volver().subscribe().unsubscribe();
   }  
 
   crear() {
-    let value = this.form.value;
-    console.log(value);
+    if (this.form.valid) {
+      let value = this.form.value;
+      let situacion = value['situacion'];
+      this.preload.activar_preload_completo();
+      let id = '';
+      this.subscriptions.push(this.params$.pipe(
+        switchMap( params => {
+          id = params.id;
+          return this.service.agregarAsistencia(params.id, situacion, params.pids);
+        })
+      ).subscribe(
+        res => {
+          this.preload.desactivar_preload_completo();
+          let nav$ = this.modal.openInfoModal("Nueva Asistencia", "Se ha cargado exitosamente la asistencia").pipe(
+            switchMap( v => {
+              return this.navegar.navegar({
+                url: '/sistema/tutorias/asistencia/detalle/' + id,
+                params: {}
+              }, false)
+            })
+          );
+          this.subscriptions.push(nav$.subscribe( _ => {}));
+        },
+        err => {
+          this.preload.desactivar_preload_completo();
+          this.subscriptions.push(this.modal.openErrorModal("Error al crear la Tutoría: " + err).subscribe());          
+        }
+      ));
+      
+    }
+
   }
 
 }

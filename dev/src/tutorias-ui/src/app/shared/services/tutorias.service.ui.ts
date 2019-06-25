@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Usuario } from '../entities/usuario';
-import { Tutoria, AsistenciaTutoria } from '../entities/tutoria';
+import { Tutoria, AsistenciaTutoria, Situacion } from '../entities/tutoria';
 import { delay, map } from 'rxjs/operators';
 import { environment } from '../../../environments/environment';
 import { HttpClient, HttpParams } from '@angular/common/http';
@@ -121,20 +121,6 @@ export class TutoriasService {
     };
     let apiUrl = `${USUARIO_API_URL}/usuarios`;
     return this.http.get<Usuario[]>(apiUrl, options);
-
-    // return of([new Usuario({
-    //   'id': '1',
-    //   'nombre': 'Emanuel',
-    //   'apellido': 'Pais',
-    //   'dni': '41125478',
-    //   'legajo': '145877/7'
-    // }), new Usuario({
-    //   'id': '2',
-    //   'nombre': 'Walter',
-    //   'apellido': 'Blanco',
-    //   'dni': '45874147',
-    //   'legajo': '785877/8'
-    // })]).pipe(delay(500));
   }  
   
   crearTutoria(data: any): Observable<string> {
@@ -169,6 +155,13 @@ export class TutoriasService {
     return of(this.tutorias.find(t => t.id == id));
   }
 
+  obtenerSituaciones(): Observable<Situacion[]> {
+    return of([
+      new Situacion({id: '1', situacion: 'Económica'}),
+      new Situacion({id: '2', situacion: 'Personales'})
+    ]);
+  }
+
   modificarAsistencia(asistencia: AsistenciaTutoria): Observable<string> {
     return null;
   }
@@ -177,7 +170,8 @@ export class TutoriasService {
     return of(true);
   }
 
-  agregarAsistencia(id: string, asistencia: AsistenciaTutoria): Observable<string> {
-    return null;
+  agregarAsistencia(id: string, situacion_id: string, alumnos: string[]): Observable<string[]> {
+    console.log(alumnos);
+    return of(['a']);
   }  
 }

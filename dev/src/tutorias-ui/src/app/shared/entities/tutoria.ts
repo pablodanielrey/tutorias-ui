@@ -21,7 +21,7 @@ export class Tutoria {
 export class AsistenciaTutoria {
     id: string;
     alumno: Usuario;
-    situacion: string;
+    situacion: Situacion;
 
     constructor(o:Object) {
         try {
@@ -30,4 +30,18 @@ export class AsistenciaTutoria {
             console.log(e);
         }
     }       
+}
+
+export class Situacion {
+    id: string;
+    situacion: string;
+
+    constructor(o:Object) {
+        try {
+            Object.assign(this, o);
+        } catch(e) {
+            console.log(e);
+        }
+    }           
+
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { Tutoria, AsistenciaTutoria } from '../entities/tutoria';
+import { Tutoria, AsistenciaTutoria, Situacion } from '../entities/tutoria';
 import { Usuario } from '../entities/usuario';
 
 @Injectable({
@@ -39,6 +39,10 @@ export class TutoriasService {
     return null;
   }
 
+  obtenerSituaciones(): Observable<Situacion[]> {
+    return null;
+  }
+
   modificarAsistencia(asistencia: AsistenciaTutoria): Observable<string> {
     return null;
   }
@@ -47,7 +51,7 @@ export class TutoriasService {
     return null;
   }
 
-  agregarAsistencia(id: string, asistencia: AsistenciaTutoria): Observable<string> {
+  agregarAsistencia(id: string, situacion_id: string, alumnos: string[]): Observable<string[]> {
     return null;
   }
 }

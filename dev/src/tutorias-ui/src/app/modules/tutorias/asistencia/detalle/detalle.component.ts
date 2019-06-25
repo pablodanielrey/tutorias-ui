@@ -4,7 +4,9 @@ import { Observable } from 'rxjs';
 import { AsistenciaTutoria, Tutoria } from '../../../../shared/entities/tutoria';
 import { TutoriasService } from '../../../../shared/services/tutorias.service';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap, map } from 'rxjs/operators';
+import { switchMap, map, filter, tap } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { EliminarComponent } from '../eliminar/eliminar.component';
 
 @Component({
   selector: 'app-detalle',
@@ -17,10 +19,13 @@ export class DetalleComponent implements OnInit {
   tutorias$: Observable<AsistenciaTutoria[]>; 
   tutoria$: Observable<Tutoria>;
 
+  subscriptions = [];
+
   constructor(
     private navegar: NavegarService,
     private service: TutoriasService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    public dialog: MatDialog
   ) { }
 
   ngOnInit() {
@@ -39,47 +44,55 @@ export class DetalleComponent implements OnInit {
     )
   }
 
+  ngOnDestroy(): void {
+    this.subscriptions.forEach(s => s.unsubscribe());
+  }  
+
   volver() {
-    this.navegar.volver('/sistema/tutorias/listar', {}).subscribe().unsubscribe();
+    this.subscriptions.push(this.navegar.volver('/sistema/tutorias/listar', {}).subscribe());
   }
   
   detalle() {
-    let s = this.tutoria$.pipe(
+    this.subscriptions.push(this.tutoria$.pipe(
       switchMap( t => 
         this.navegar.navegar({
           url: '/sistema/tutorias/detalle/' + t.id,
           params: { }
         })
       )
-    ).subscribe(_ => {
-      s.unsubscribe();
-    })
+    ).subscribe(_ => {}));
   }
 
   agregarTutoria() {
-    let s = this.tutoria$.pipe(
+    this.subscriptions.push(this.tutoria$.pipe(
       switchMap( t => 
         this.navegar.navegar({
           url: '/sistema/tutorias/asistencia/nueva/seleccionar-persona/' + t.id,
           params: { }
         })
       )
-    ).subscribe(_ => {
-      s.unsubscribe();
-    });
+    ).subscribe(_ => {}));
   }  
 
   modificar(id: string) {
-    let s = this.navegar.navegar({
+    this.subscriptions.push(this.navegar.navegar({
       url: '/sistema/tutorias/asistencia/editar/' + id,
       params: { }
-    }).subscribe(_ => {
-      s.unsubscribe();
-    })
+    }).subscribe(_ => {}));
   }  
 
-  eliminar(id: string) {
-    console.log('eliminar');
+  eliminar(asistencia: AsistenciaTutoria) {
+    const dialogRef = this.dialog.open(EliminarComponent, {
+      width: '250px',
+      data: asistencia
+    });
+    dialogRef.afterClosed().subscribe( res => {
+      if (res) {
+        this.tutorias$ = this.tutorias$.pipe(
+          map(ts => ts.filter( t => t.id != asistencia.id))
+        );
+      }
+    })
   }
 
 }

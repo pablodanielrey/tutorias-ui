@@ -34,7 +34,7 @@ export class TutoriasService {
           situacion: 'Económica'
         }),
         new AsistenciaTutoria({
-          id: '1',
+          id: '2',
           fecha: new Date(),
           alumno: new Usuario({
             id: '2',
@@ -63,7 +63,7 @@ export class TutoriasService {
           id: '1',
           fecha: new Date(),
           alumno: new Usuario({
-            id: '2',
+            id: '3',
             apellido: 'Rey',
             nombre: 'Pablo',
             dni: '41123987',
@@ -86,7 +86,7 @@ export class TutoriasService {
       }),
       asistencia: [
         new AsistenciaTutoria({
-          id: '1',
+          id: '4',
           fecha: new Date(),
           alumno: new Usuario({
             id: '2',
@@ -98,10 +98,10 @@ export class TutoriasService {
           situacion: 'Económica'
         }),
         new AsistenciaTutoria({
-          id: '1',
+          id: '5',
           fecha: new Date(),
           alumno: new Usuario({
-            id: '1',
+            id: '4',
             apellido: 'Pais',
             nombre: 'Emanuel',
             dni: '39147896',
@@ -157,7 +157,7 @@ export class TutoriasService {
   }
 
   eliminarTutoria(id: string): Observable<boolean> {
-    return null;
+    return of(true);
   }
 
   buscarTutoria(id: string): Observable<Tutoria> {
@@ -169,7 +169,7 @@ export class TutoriasService {
   }
 
   eliminarAsistencia(id: string): Observable<boolean> {
-    return null;
+    return of(true);
   }
 
   agregarAsistencia(id: string, asistencia: AsistenciaTutoria): Observable<string> {

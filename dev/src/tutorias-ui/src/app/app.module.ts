@@ -21,6 +21,7 @@ import { SeleccionarUsuarioComponent } from './shared/components/seleccionar-usu
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
+import { EliminarComponent as EliminarAsistenciaComponent} from './modules/tutorias/asistencia/eliminar/eliminar.component';
 
 
 @NgModule({
@@ -35,7 +36,11 @@ import { MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
     SeleccionarUsuarioComponent,
     AltaComponent,
     EditarComponent,
-    DetalleAsistenciaComponent
+    DetalleAsistenciaComponent,
+    EliminarAsistenciaComponent
+  ],
+  entryComponents: [
+    EliminarAsistenciaComponent
   ],
   imports: [
     BrowserModule,

@@ -4,5 +4,21 @@
   <span class="ruta">&nbsp; Tutorias > Detalle</span>
 </mat-toolbar-row>
 
+<div *ngIf="tutoria$ | async">
+  <div>
+    Tutor: {{ (tutoria$|async)?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }} 
+  </div>
 
-muestra el QR con el tutor, la hora, el aula, etc
+  <div>
+    Fecha: {{ (tutoria$|async)?.fecha | date:'dd/MM/yy' }}
+  </div>
+  <div>
+    Hora: {{ (tutoria$|async)?.fecha | date:'HH:mm' }}
+  </div>
+  <div>
+    Aula: {{(tutoria$|async)?.aula}}
+  </div>
+  <div>
+    Asistieron: {{(tutoria$|async)?.nro_alumnos}}
+  </div>
+</div>

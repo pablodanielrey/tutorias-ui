@@ -2,7 +2,11 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { Usuario } from '../entities/usuario';
 import { Tutoria, AsistenciaTutoria } from '../entities/tutoria';
-import { delay } from 'rxjs/operators';
+import { delay, map } from 'rxjs/operators';
+import { environment } from '../../../environments/environment';
+import { HttpClient, HttpParams } from '@angular/common/http';
+
+const USUARIO_API_URL = environment.usuarioApiUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -23,7 +27,6 @@ export class TutoriasService {
       asistencia: [
         new AsistenciaTutoria({
           id: '1',
-          fecha: new Date(),
           alumno: new Usuario({
             id: '1',
             apellido: 'Pais',
@@ -35,7 +38,6 @@ export class TutoriasService {
         }),
         new AsistenciaTutoria({
           id: '2',
-          fecha: new Date(),
           alumno: new Usuario({
             id: '2',
             apellido: 'Rey',
@@ -61,7 +63,6 @@ export class TutoriasService {
       asistencia: [
         new AsistenciaTutoria({
           id: '1',
-          fecha: new Date(),
           alumno: new Usuario({
             id: '3',
             apellido: 'Rey',
@@ -87,7 +88,6 @@ export class TutoriasService {
       asistencia: [
         new AsistenciaTutoria({
           id: '4',
-          fecha: new Date(),
           alumno: new Usuario({
             id: '2',
             apellido: 'Rey',
@@ -99,7 +99,6 @@ export class TutoriasService {
         }),
         new AsistenciaTutoria({
           id: '5',
-          fecha: new Date(),
           alumno: new Usuario({
             id: '4',
             apellido: 'Pais',
@@ -114,22 +113,28 @@ export class TutoriasService {
     })  
   ];
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   buscarPersonas(texto: string): Observable<Usuario[]> {
-    return of([new Usuario({
-      'id': '1',
-      'nombre': 'Emanuel',
-      'apellido': 'Pais',
-      'dni': '41125478',
-      'legajo': '145877/7'
-    }), new Usuario({
-      'id': '2',
-      'nombre': 'Walter',
-      'apellido': 'Blanco',
-      'dni': '45874147',
-      'legajo': '785877/8'
-    })]).pipe(delay(500));
+    const options = { params: new HttpParams()
+      .set('q', texto ? texto : 'algoquenoexiste')
+    };
+    let apiUrl = `${USUARIO_API_URL}/usuarios`;
+    return this.http.get<Usuario[]>(apiUrl, options);
+
+    // return of([new Usuario({
+    //   'id': '1',
+    //   'nombre': 'Emanuel',
+    //   'apellido': 'Pais',
+    //   'dni': '41125478',
+    //   'legajo': '145877/7'
+    // }), new Usuario({
+    //   'id': '2',
+    //   'nombre': 'Walter',
+    //   'apellido': 'Blanco',
+    //   'dni': '45874147',
+    //   'legajo': '785877/8'
+    // })]).pipe(delay(500));
   }  
   
   crearTutoria(data: any): Observable<string> {

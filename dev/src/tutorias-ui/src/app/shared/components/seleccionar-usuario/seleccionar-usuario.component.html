@@ -30,7 +30,7 @@
 
             <mat-chip-list *ngFor='let t of seleccionados'>
                 <mat-chip>
-                  {{t.nombre}}<mat-icon matChipRemove (click)='deseleccionar(t)'>cancel</mat-icon>
+                  {{t.nombre}} {{t.apellido}}<mat-icon matChipRemove (click)='deseleccionar(t)'>cancel</mat-icon>
                 </mat-chip>
             </mat-chip-list>
         </mat-card-content>

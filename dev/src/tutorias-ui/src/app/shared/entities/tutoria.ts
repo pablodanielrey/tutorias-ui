@@ -20,7 +20,6 @@ export class Tutoria {
 
 export class AsistenciaTutoria {
     id: string;
-    fecha: Date;
     alumno: Usuario;
     situacion: string;
 

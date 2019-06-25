@@ -8,3 +8,18 @@
 
 <div>Ids de personas: {{ (params$ | async)?.pids }}</div>
 <div>Id de la tutoria: {{ (params$ | async)?.id }}</div>
+<form [formGroup]='form' (ngSubmit)='crear()' class="formulario">
+
+    <div class="bloqueAcciones">
+        <mat-form-field class="itemFormulario" appearance="outline">
+            <mat-label>Situación</mat-label>
+            <mat-select formControlName='situacion'>
+                <mat-option *ngFor="let situacion of (situaciones$ | async)" [value]="situacion">
+                    {{situacion}}
+                </mat-option>
+            </mat-select>    
+        </mat-form-field>       
+
+        <button mat-Button type='submit' class="btnGuardar" mat-flat-button color="primary">ACEPTAR</button>
+    </div>     
+</form>

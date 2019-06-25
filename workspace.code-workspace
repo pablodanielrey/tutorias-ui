@@ -7,10 +7,10 @@
 			"path": "/src/gitlab/stacks"
 		},
 		{
-			"path": "/home/src/github/warden-api"
+			"path": "/src/github/warden-api"
 		},
 		{
-			"path": "/home/src/github/tutorias-api"
+			"path": "/src/github/tutorias-api"
 		}
 	],
 	"settings": {}

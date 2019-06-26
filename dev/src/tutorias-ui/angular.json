@@ -61,6 +61,11 @@
               ],
               "serviceWorker": true
             },
+            "dev": {
+              "fileReplacements": [
+                
+              ]
+            },            
             "ui": {
               "fileReplacements": [
                 {
@@ -84,6 +89,9 @@
             "production": {
               "browserTarget": "tutorias-ui:build:production"
             },
+            "dev": {
+              "browserTarget": "tutorias-ui:build:dev"
+            },            
             "ui": {
               "browserTarget": "tutorias-ui:build:ui"
             }

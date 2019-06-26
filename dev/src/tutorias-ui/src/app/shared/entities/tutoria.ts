@@ -11,6 +11,7 @@ export class Tutoria {
     constructor(o:Object) {
         try {
             Object.assign(this, o);
+            this.fecha = new Date(this.fecha);
             this.asistencia = (this.asistencia == null) ? []: this.asistencia.map(t => new AsistenciaTutoria(t));
         } catch(e) {
             console.log(e);

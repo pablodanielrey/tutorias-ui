@@ -4,21 +4,24 @@
   <span class="ruta">&nbsp; Tutorias > Detalle</span>
 </mat-toolbar-row>
 
-<div *ngIf="tutoria$ | async">
+<div *ngIf="(tutoria$ | async) as tutoria">
   <div>
-    Tutor: {{ (tutoria$|async)?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }} 
+    Tutor: {{ tutoria?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }} 
   </div>
 
   <div>
-    Fecha: {{ (tutoria$|async)?.fecha | date:'dd/MM/yy' }}
+    Fecha: {{ tutoria?.fecha | date:'dd/MM/yy' }}
   </div>
   <div>
-    Hora: {{ (tutoria$|async)?.fecha | date:'HH:mm' }}
+    Hora: {{ tutoria?.fecha | date:'HH:mm' }}
   </div>
   <div>
-    Aula: {{(tutoria$|async)?.aula}}
+    Aula: {{tutoria?.aula}}
   </div>
   <div>
-    Asistieron: {{(tutoria$|async)?.nro_alumnos}}
+    Asistieron: {{tutoria?.nro_alumnos}}
+  </div>
+  <div>
+    Qr: <img src='data:image/png;base64,{{tutoria?.qr}}'>
   </div>
 </div>

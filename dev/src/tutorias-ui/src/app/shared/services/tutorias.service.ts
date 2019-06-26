@@ -4,7 +4,7 @@ import { Tutoria, AsistenciaTutoria, Situacion } from '../entities/tutoria';
 import { Usuario } from '../entities/usuario';
 
 import { environment } from '../../../environments/environment';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 
 const TUTORIAS_API_URL = environment.tutoriasApiUrl;
@@ -23,16 +23,36 @@ export class TutoriasService {
   constructor(private http: HttpClient) { }
 
   buscarPersonas(texto: string): Observable<Usuario[]> {
-    return null;
+    const options = { params: new HttpParams()
+      .set('q', texto ? texto : 'algoquenoexiste')
+    };
+    let apiUrl = `${TUTORIAS_API_URL}/usuarios`;
+    return this.http.get<Response>(apiUrl, options).pipe(
+      map(r => r.response)
+    );
   }
   
   crearTutoria(data: any): Observable<string> {
     /*
+    TODO: falta pasar parámetro de tutor_id
+    ya que alguna otra persona podría llegar a crear tutorias.
+    faltan parámetros:
+    materia
+    comision
+    tutor_id
+    
+
+
     Crea una tutoria con fecha y aula seleccionada
     (Genera QR en la API cuando le da guardar y el tutor es el usuario logueado)
     data: {fecha: date, aula: string}
     */
-    return null;
+    let t = new Tutoria(data);
+    let url = `${TUTORIAS_API_URL}/tutorias`;
+    let req = this.http.post<Response>(url, t).pipe(
+      map(r => r.response)
+    )    
+    return req;
   }
 
   listarTutorias(inicio: Date, fin: Date): Observable<any[]> {

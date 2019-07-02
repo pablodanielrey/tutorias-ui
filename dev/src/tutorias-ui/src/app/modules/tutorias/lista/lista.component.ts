@@ -17,7 +17,9 @@ export class ListaComponent implements OnInit {
   @ViewChild(MatSort, null) sort: MatSort;
   @ViewChild(MatPaginator, null) paginator: MatPaginator;
 
-  displayedColumns: string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];
+  // displayedColumns: string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];
+  columnasDesktop : string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];
+  columnasCelular : string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];
   tutorias$: Observable<Array<Tutoria>> = null;
   tutorias_ordenadas$: Observable<Array<Tutoria>> = null;
   tutorias_paginadas$: Observable<Array<Tutoria>> = null;
@@ -27,6 +29,17 @@ export class ListaComponent implements OnInit {
   pagina$ = new BehaviorSubject<PageEvent>({length: 0, pageIndex: 0, pageSize: 10});  
 
   cargando$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);  
+
+  columnas() {
+    /*
+      detecta si es un dispositivo touch
+    */
+    if (typeof window.ontouchstart !== 'undefined') {
+      return this.columnasCelular;
+    } else {
+      return this.columnasDesktop;
+    }
+  }
 
   
   constructor(

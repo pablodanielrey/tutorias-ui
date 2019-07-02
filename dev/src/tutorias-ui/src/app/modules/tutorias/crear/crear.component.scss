@@ -1,0 +1,45 @@
+.btnVolver {
+    display: inline;
+    @media screen and (max-width: 768px) {
+      display: none;
+  }
+  }
+  
+  .btnVolverCel {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: inline;
+  }
+  }
+  
+  .ruta {
+    opacity: .5;
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+    
+   
+  .pantalla {
+      padding: 20px;
+  }
+  
+ .formulario {
+     display: flex;
+     flex-direction: column;
+     min-width: 250px;
+     width: 25%;
+     @media screen and (max-width: 768px) {
+        width: 100%;
+
+     }
+ }
+  
+  .btnNueva {
+    @media screen and (max-width: 768px) {
+      width: 100%;
+      padding: 10px;
+    }
+  }
+  
+  

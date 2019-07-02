@@ -6,6 +6,9 @@
 
 <mat-divider></mat-divider>
 
+<div class="pantalla">
+
+
 <form [formGroup]='form' (ngSubmit)='crear()' class="formulario">
 
     <mat-form-field class="itemFormulario" appearance="outline">
@@ -16,12 +19,14 @@
     </mat-form-field>  
     
     <mat-form-field appearance="outline" class="itemFormulario">
-        <mat-label>Aula</mat-label>
+        <mat-label>Aula - Lugar</mat-label>
         <input matInput formControlName='aula'/>
     </mat-form-field>    
     
     <div class="bloqueAcciones">
-        <button mat-Button type='submit' class="btnGuardar" mat-flat-button color="primary">ACEPTAR</button>
+        <button mat-Button type='submit' class="btnNueva" mat-flat-button color="primary">CREAR TUTORIA</button>
     </div>    
 
 </form>
+
+</div>

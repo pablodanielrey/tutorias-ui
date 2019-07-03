@@ -7,67 +7,119 @@
 <mat-divider></mat-divider>
 
 <div class="pantalla">
-    <button (click)="agregarTutoria()" mat-flat-button color="primary">Agregar Tutoría</button>
-    <button (click)="detalle()" mat-flat-button color="primary">Detalle</button>
 
-    <table mat-table [dataSource]="tutorias$ | async">
+    <div class="bloqueDetalle">
+        <mat-card>
+            <div  id="imprimir">
+            <mat-card-header>
+                <mat-card-title>Tutoria FCE</mat-card-title>
+                <mat-card-subtitle>21 de Julio de 2019 <br> Aula 102 - 17:00 hs <br> Tutor: Walter Blanco</mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
 
-        <!-- Columna nombre del alumno -->
-        <ng-container matColumnDef="alumno_nombre">
-            <th mat-header-cell *matHeaderCellDef> Nombre </th>
-            <td mat-cell *matCellDef="let tutoria">
-                {{tutoria.alumno.nombre}} {{tutoria.alumno.apellido}}
-            </td>
-        </ng-container>
+                  
+                <mat-accordion>
+                            <mat-expansion-panel [expanded]="true">
+                              <mat-expansion-panel-header>
+                                <mat-panel-title>
+                                  QR
+                                </mat-panel-title>
+                                
 
-        <!-- Columna dni del alumno -->
-        <ng-container matColumnDef="alumno_dni">
-            <th mat-header-cell *matHeaderCellDef> DNI </th>
-            <td mat-cell *matCellDef="let tutoria">
-                {{tutoria.alumno.dni}}
-            </td>
-        </ng-container>
+                              </mat-expansion-panel-header>
 
-        <!-- Columna legajo del alumno -->
-        <ng-container matColumnDef="alumno_legajo">
-            <th mat-header-cell *matHeaderCellDef> Legajo </th>
-            <td mat-cell *matCellDef="let tutoria">
-                {{tutoria.alumno.legajo}}
-            </td>
-        </ng-container>    
+                              <img class="qr" src="https://www.heritageopendays.org.uk/cache/uploads/_blog/TW_QR_Code_1105_1105_s.png">
+                          
+                            </mat-expansion-panel>
 
-        <!-- Columna situacion del alumno -->
-        <ng-container matColumnDef="situacion">
-            <th mat-header-cell *matHeaderCellDef> Situacion </th>
-            <td mat-cell *matCellDef="let tutoria">
-                {{tutoria.situacion}}
-            </td>
-        </ng-container>   
+   
+                </mat-accordion>  
+                
 
-        <!-- Columna fecha -->
-        <ng-container matColumnDef="fecha">
-            <th mat-header-cell *matHeaderCellDef> Fecha </th>
-            <td mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'dd/MM/yy'}}</td>
-        </ng-container>   
+            
+            </mat-card-content>
+            </div>
 
-        <!-- Columna hora -->
-        <ng-container matColumnDef="hora">
-            <th mat-header-cell *matHeaderCellDef> Hora </th>
-            <td mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'HH:mm'}}</td>
-        </ng-container>      
+            <button (click)="print()" mat-button color="basic"> <mat-icon>print </mat-icon> Imprimir </button>
+
+
+
+        </mat-card>
+
+    </div>
+
+    <div class="bloqueTabla">
+
+            <mat-card class="detalleCelular">
+                <div>  25/08/2019 - Tutor: Walter Blanco  </div>  
+                <div>  <button (click)="detalle()" mat-icon-button><mat-icon>zoom_in </mat-icon></button> </div>
+            </mat-card>
+
+            <button (click)="agregarTutoria()" mat-flat-button color="primary" class="btnAgregar"> <mat-icon>person_add </mat-icon> AGREGAR ALUMNOS</button>
+            <!-- <button mat-mini-fab color="primary"> <mat-icon>person_add </mat-icon> </button> -->
         
-        <!-- Columna acciones -->
-        <ng-container matColumnDef="acciones">
-            <th mat-header-cell *matHeaderCellDef> Acciones </th>
-            <td mat-cell *matCellDef="let tutoria">
-                <button (click)="modificar(tutoria.id)">Modificar</button>
-                <button (click)="eliminar(tutoria)">Eliminar</button>
-            </td>
-        </ng-container>        
+            <table mat-table [dataSource]="tutorias$ | async">
+        
+                <!-- Columna nombre del alumno -->
+                <ng-container matColumnDef="alumno_nombre">
+                    <th mat-header-cell *matHeaderCellDef> Alumno </th>
+                    <td mat-cell *matCellDef="let tutoria">
+                        {{tutoria.alumno.nombre}} {{tutoria.alumno.apellido}}
+                    </td>
+                </ng-container>
+        
+                <!-- Columna dni del alumno -->
+                <ng-container matColumnDef="alumno_dni">
+                    <th mat-header-cell *matHeaderCellDef> DNI </th>
+                    <td mat-cell *matCellDef="let tutoria">
+                        {{tutoria.alumno.dni}}
+                    </td>
+                </ng-container>
+        
+                <!-- Columna legajo del alumno -->
+                <ng-container matColumnDef="alumno_legajo">
+                    <th mat-header-cell *matHeaderCellDef> Legajo </th>
+                    <td mat-cell *matCellDef="let tutoria">
+                        {{tutoria.alumno.legajo}}
+                    </td>
+                </ng-container>    
+        
+                <!-- Columna situacion del alumno -->
+                <ng-container matColumnDef="situacion">
+                    <th mat-header-cell *matHeaderCellDef> Situacion </th>
+                    <td mat-cell *matCellDef="let tutoria">
+                        {{tutoria.situacion}}
+                    </td>
+                </ng-container>   
+        
+                <!-- Columna fecha -->
+                <ng-container matColumnDef="fecha">
+                    <th mat-header-cell *matHeaderCellDef> Fecha </th>
+                    <td mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'dd/MM/yy'}}</td>
+                </ng-container>   
+        
+                <!-- Columna hora -->
+                <ng-container matColumnDef="hora">
+                    <th mat-header-cell *matHeaderCellDef> Hora </th>
+                    <td mat-cell *matCellDef="let tutoria">{{tutoria.fecha | date: 'HH:mm'}}</td>
+                </ng-container>      
+                
+                <!-- Columna acciones -->
+                <ng-container matColumnDef="acciones">
+                    <th mat-header-cell *matHeaderCellDef> Acciones </th>
+                    <td mat-cell *matCellDef="let tutoria">
+                        <button mat-icon-button (click)="modificar(tutoria.id)"><mat-icon>edit</mat-icon></button>
+                        <button mat-icon-button (click)="eliminar(tutoria)"><mat-icon>delete_outline</mat-icon></button>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
-    </table>    
+                    </td>
+                </ng-container>        
+        
+                <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>    
+            </table>    
+
+    </div>
+    
 </div>
 
 

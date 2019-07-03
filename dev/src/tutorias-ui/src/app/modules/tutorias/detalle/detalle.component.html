@@ -1,27 +1,76 @@
 <mat-toolbar-row>
   <button class="btnVolver" mat-button color="primary" (click)='volver()'> <mat-icon>undo </mat-icon> VOLVER </button>
-  <!-- <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button> -->
+  <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button>
   <span class="ruta">&nbsp; Tutorias > Detalle</span>
 </mat-toolbar-row>
 
-<div *ngIf="(tutoria$ | async) as tutoria">
-  <div>
-    Tutor: {{ tutoria?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }} 
+<mat-divider></mat-divider>
+
+<div class="pantalla">
+
+  <div class="card">
+
+  <mat-card  *ngIf="(tutoria$ | async) as tutoria">
+      <div  id="imprimir">
+          <mat-card-header>
+              <mat-card-title>Tutoria FCE</mat-card-title>
+              <mat-card-subtitle>
+                Materia: {{tutoria?.materia}}<br>
+                Comisión: {{tutoria?.comision}} <br>
+                Fecha: {{ tutoria?.fecha | date:'dd/MM/yy' }} <br> 
+                Hora: {{ tutoria?.fecha | date:'HH:mm' }} <br>
+                Aula: {{tutoria?.aula}} <br> 
+                Tutor: {{ tutoria?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }} 
+              </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <mat-accordion>
+                <mat-expansion-panel [expanded]="true">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            QR
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                      <img class="qr" src="data:image/png;base64,{{tutoria?.qr}}">
+                    </mat-expansion-panel>
+              </mat-accordion>  
+          </mat-card-content>
+      </div>
+
+      <button (click)="print()" mat-button color="basic"> <mat-icon>print </mat-icon> Imprimir </button>
+
+
+      <!-- <div *ngIf="(tutoria$ | async) as tutoria">
+          <div>
+            Tutor: {{ tutoria?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }} 
+          </div>
+      
+          <div>
+            Fecha: {{ tutoria?.fecha | date:'dd/MM/yy' }}
+          </div>
+          <div>
+            Hora: {{ tutoria?.fecha | date:'HH:mm' }}
+          </div>
+          <div>
+            Aula: {{tutoria?.aula}}
+          </div>
+          <div>
+            Materia: {{tutoria?.materia}}
+          </div>
+          <div>
+              Comisión: {{tutoria?.comision}}
+          </div>
+          <div>
+            Qr: <img src='data:image/png;base64,{{tutoria?.qr}}'>
+          </div>
+        </div> -->
+      
+
+
+
+  </mat-card>
   </div>
 
-  <div>
-    Fecha: {{ tutoria?.fecha | date:'dd/MM/yy' }}
-  </div>
-  <div>
-    Hora: {{ tutoria?.fecha | date:'HH:mm' }}
-  </div>
-  <div>
-    Aula: {{tutoria?.aula}}
-  </div>
-  <div>
-    Asistieron: {{tutoria?.nro_alumnos}}
-  </div>
-  <div>
-    Qr: <img src='data:image/png;base64,{{tutoria?.qr}}'>
-  </div>
+
+
 </div>

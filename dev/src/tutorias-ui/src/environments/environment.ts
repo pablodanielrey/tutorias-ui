@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  //tutoriasApiUrl: 'https://api.econo.unlp.edu.ar/tutorias/api/v1.0',
-  tutoriasApiUrl: 'http://127.0.0.1:11202/tutorias/api/v1.0',
+  tutoriasApiUrl: 'https://api.econo.unlp.edu.ar/tutorias/api/v1.0',
+  //tutoriasApiUrl: 'http://127.0.0.1:11202/tutorias/api/v1.0',
   loginApiUrl: 'https://api.econo.unlp.edu.ar/login/api/v1.0',
   wardenApiUrl: 'https://api.econo.unlp.edu.ar/warden/api/v1.0',
   oidp_issuer: 'https://oidc.econo.unlp.edu.ar/',

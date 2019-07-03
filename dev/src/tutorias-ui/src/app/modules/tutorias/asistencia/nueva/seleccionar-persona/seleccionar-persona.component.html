@@ -1,11 +1,11 @@
 <mat-toolbar-row>
     <button class="btnVolver" mat-button color="primary" (click)='volver()'> <mat-icon>undo </mat-icon> VOLVER </button>
-    <!-- <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button> -->
+    <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button>
     <span class="ruta">&nbsp; Tutorias - Buscar Alumno</span>
 </mat-toolbar-row>
 
 <mat-divider></mat-divider>
 
 <div class="pantalla">
-    <app-seleccionar-usuario (seleccionado)='seleccionado($event)'></app-seleccionar-usuario>  
+    <app-seleccionar-usuario (seleccionado)='seleccionado($event)' class="app"></app-seleccionar-usuario>  
 </div>

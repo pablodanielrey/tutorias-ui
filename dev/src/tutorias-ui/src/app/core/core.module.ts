@@ -133,6 +133,7 @@ const routes: Routes = [
     RouterModule.forChild(routes)
   ],
   exports: [
+    MatExpansionModule,
     MatButtonModule,
     MatButtonToggleModule,
     MatIconModule,

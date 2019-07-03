@@ -1,3 +1,74 @@
-table {
+.btnVolver {
+    display: inline;
+    @media screen and (max-width: 768px) {
+      display: none;
+  }
+  }
+  
+  .btnVolverCel {
+    display: none;
+    @media screen and (max-width: 768px) {
+      display: inline;
+  }
+  }
+  
+  .ruta {
+    opacity: .5;
+    @media screen and (max-width: 768px) {
+      font-size: 12px;
+    }
+  }
+    
+   
+  .pantalla {
+      padding: 20px;
+      display: flex;
+      flex-direction: row;
+  }
+
+  .bloqueDetalle {
+      width: 25%;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+  }
+
+  .qr {
+      width: 100%;
+  }
+
+  .bloqueTabla {
+      width: 100%;
+      margin-left: 20px;
+      @media screen and (max-width: 768px) {
+    margin-left: 0px;
+    }
+  }
+  
+  
+  table {
     width: 100%
-}
+  }
+
+  .detalleCelular {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (min-width: 768px) {
+        display: none;
+    }
+
+  }
+  
+
+  .btnAgregar {
+    margin: 0 0 20px 0;
+
+    @media screen and (max-width: 768px) {
+    width: 100%;
+    padding: 10px;
+    margin: 20PX 0 20px 0;
+    }
+  }
+ 

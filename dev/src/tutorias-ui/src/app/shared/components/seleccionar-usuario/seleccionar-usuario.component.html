@@ -24,9 +24,11 @@
 
 <!-- CONTENEDOR DE LUGARES SELECCIONADOS -->
 <div *ngIf='seleccionados.length > 0' class="contenedorSeleccionados">
+
+        <div class="textLS">Alumnos Seleccionados</div>
+
     <mat-card >
         <mat-card-content>
-            <div class="textLS">Alumnos Seleccionados</div>
 
             <mat-chip-list *ngFor='let t of seleccionados'>
                 <mat-chip>

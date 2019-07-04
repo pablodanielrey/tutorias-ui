@@ -15,11 +15,25 @@ import { EliminarComponent } from '../eliminar/eliminar.component';
 })
 export class DetalleComponent implements OnInit {
 
-  displayedColumns: string[] = ['alumno_nombre', 'alumno_dni', 'alumno_legajo', 'situacion', 'fecha', 'hora', 'acciones'];
+  // displayedColumns: string[] = ['alumno_nombre', 'alumno_dni', 'alumno_legajo', 'situacion', 'fecha', 'hora', 'acciones'];
+  columnasDesktop : string[] = ['alumno_nombre', 'alumno_dni', 'alumno_legajo', 'situacion', 'fecha', 'hora', 'acciones'];
+  columnasCelular : string[] = ['alumno_nombre',  'situacion', 'acciones'];
   tutorias$: Observable<AsistenciaTutoria[]>; 
   tutoria$: Observable<Tutoria>;
 
   subscriptions = [];
+
+  columnas() {
+    /*
+      detecta si es un dispositivo touch
+    */
+    if (typeof window.ontouchstart !== 'undefined') {
+      return this.columnasCelular;
+    } else {
+      return this.columnasDesktop;
+    }
+  }
+
 
   constructor(
     private navegar: NavegarService,

@@ -1,10 +1,12 @@
 <mat-toolbar-row>
   <button class="btnVolver" mat-button color="primary" (click)='volver()'> <mat-icon>undo </mat-icon> VOLVER </button>
-  <!-- <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button> -->
+  <button class="btnVolverCel" mat-icon-button color="primary" (click)='volver()'> <mat-icon>undo</mat-icon> </button>
   <span class="ruta">&nbsp; Tutorias - Agregar Alumno</span>
 </mat-toolbar-row>
 
 <mat-divider></mat-divider>
+
+<div class="pantalla">
 
 <form [formGroup]='form' (ngSubmit)='crear()' class="formulario">
 
@@ -21,3 +23,5 @@
         <button mat-Button type='submit' class="btnGuardar" mat-flat-button color="primary">ACEPTAR</button>
     </div>     
 </form>
+
+</div>

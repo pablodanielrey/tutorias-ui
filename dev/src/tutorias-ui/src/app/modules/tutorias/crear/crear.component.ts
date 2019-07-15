@@ -14,6 +14,9 @@ import { ModalService } from '../../../core/modal/modal.service';
 export class CrearComponent implements OnInit {
   form = this.fb.group({
     fecha: [new Date(), Validators.required],
+    hora_inicio: [''],
+    materia: [''],
+    comision: [''],
     aula: ['']
   });
 

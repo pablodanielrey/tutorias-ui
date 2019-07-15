@@ -13,16 +13,31 @@
 
     <mat-form-field class="itemFormulario" appearance="outline">
         <mat-label>Fecha</mat-label>
-        <input matInput [matDatepicker]="picker" placeholder="Fecha" formControlName='fecha' readonly required>
-        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-        <mat-datepicker #picker></mat-datepicker>
+        <input matInput [matDatepicker]="fecha" placeholder="Fecha" formControlName='fecha'>
+        <mat-datepicker-toggle matSuffix [for]="fecha"></mat-datepicker-toggle>
+        <mat-datepicker #fecha></mat-datepicker>
     </mat-form-field>  
-    
+ 
+    <mat-form-field appearance="outline" class="itemFormulario">
+        <mat-label>Hora Inicio</mat-label>
+        <input matInput type='time' formControlName='hora_inicio'>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="itemFormulario">
+        <mat-label>Materia</mat-label>
+        <input matInput formControlName='materia'/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="itemFormulario">
+        <mat-label>Comisión</mat-label>
+        <input matInput formControlName='comision'/>
+    </mat-form-field>
+
     <mat-form-field appearance="outline" class="itemFormulario">
         <mat-label>Aula - Lugar</mat-label>
         <input matInput formControlName='aula'/>
-    </mat-form-field>    
-    
+    </mat-form-field>   
+
     <div class="bloqueAcciones">
         <button mat-Button type='submit' class="btnNueva" mat-flat-button color="primary">CREAR TUTORIA</button>
     </div>    

@@ -14,10 +14,10 @@ import { ModalService } from '../../../core/modal/modal.service';
 export class CrearComponent implements OnInit {
   form = this.fb.group({
     fecha: [new Date(), Validators.required],
-    hora_inicio: [''],
-    materia: [''],
-    comision: [''],
-    aula: ['']
+    hora_inicio: ['', Validators.required],
+    materia: ['', Validators.required],
+    comision: ['', Validators.required],
+    aula: ['', Validators.required]
   });
 
   subscriptions = [];
@@ -47,7 +47,7 @@ export class CrearComponent implements OnInit {
     }
 
     let data = this.form.value;
-    
+
     this.preload.activar_preload_completo();
     this.subscriptions.push(this.service.crearTutoria(data).subscribe(
       id => {

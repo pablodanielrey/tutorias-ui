@@ -59,37 +59,38 @@ export class AltaComponent implements OnInit {
   }  
 
   crear() {
-    if (this.form.valid) {
-      let value = this.form.value;
-      let situacion = value['situacion'];
-      this.preload.activar_preload_completo();
-      let id = '';
-      this.subscriptions.push(this.params$.pipe(
-        switchMap( params => {
-          id = params.id;
-          return this.service.agregarAsistencia(params.id, situacion, params.pids);
-        })
-      ).subscribe(
-        res => {
-          this.preload.desactivar_preload_completo();
-          let nav$ = this.modal.openInfoModal("Nueva Asistencia", "Se ha cargado exitosamente la asistencia").pipe(
-            switchMap( v => {
-              return this.navegar.navegar({
-                url: '/sistema/tutorias/asistencia/detalle/' + id,
-                params: {}
-              }, false)
-            })
-          );
-          this.subscriptions.push(nav$.subscribe( _ => {}));
-        },
-        err => {
-          this.preload.desactivar_preload_completo();
-          this.subscriptions.push(this.modal.openErrorModal("Error al crear la Tutoría: " + err).subscribe());          
-        }
-      ));
-      
+    if (!this.form.valid) {
+      return;
     }
-
+    
+    let value = this.form.value;
+    let situacion = value['situacion'];
+    this.preload.activar_preload_completo();
+    let id = '';
+    this.subscriptions.push(this.params$.pipe(
+      switchMap( params => {
+        id = params.id;
+        return this.service.agregarAsistencia(params.id, situacion, params.pids);
+      })
+    ).subscribe(
+      res => {
+        this.preload.desactivar_preload_completo();
+        let nav$ = this.modal.openInfoModal("Nueva Asistencia", "Se ha cargado exitosamente la asistencia").pipe(
+          switchMap( v => {
+            return this.navegar.navegar({
+              url: '/sistema/tutorias/asistencia/detalle/' + id,
+              params: {}
+            }, false)
+          })
+        );
+        this.subscriptions.push(nav$.subscribe( _ => {}));
+      },
+      err => {
+        this.preload.desactivar_preload_completo();
+        this.subscriptions.push(this.modal.openErrorModal("Error al crear la Tutoría: " + err).subscribe());          
+      }
+    ));
+    
   }
 
 }

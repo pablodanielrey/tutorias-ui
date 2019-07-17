@@ -103,6 +103,15 @@ export class TutoriasService {
   }
 
   agregarAsistencia(id: string, situacion_id: string, alumnos: string[]): Observable<string[]> {
-    return null;
+    let t = {
+      'id': id,
+      'situacion_id': situacion_id,
+      'alumnos': alumnos
+    }
+    let url = `${TUTORIAS_API_URL}/asistencias`;
+    let req = this.http.post<Response>(url, t).pipe(
+      map(r => r.response)
+    )    
+    return req;
   }
 }

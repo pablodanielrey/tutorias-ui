@@ -69,8 +69,10 @@ export class AltaComponent implements OnInit {
     let id = '';
     this.subscriptions.push(this.params$.pipe(
       switchMap( params => {
-        id = params.id;
-        return this.service.agregarAsistencia(params.id, situacion, params.pids);
+        let tutoria_id = params.id;
+        let situacion_id = situacion.id;
+        let alumnos = params.ids;
+        return this.service.agregarAsistencia(tutoria_id, situacion_id, alumnos);
       })
     ).subscribe(
       res => {

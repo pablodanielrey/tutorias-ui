@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { NavegarService } from '../../../../../core/navegar.service';
 import { ActivatedRoute } from '@angular/router';
-import { Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Observable, combineLatest, of } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-seleccionar-persona',
@@ -21,9 +21,10 @@ export class SeleccionarPersonaComponent implements OnInit {
 
   ngOnInit() {
     this.id$ = this.route.paramMap.pipe(
-      switchMap( params => {
+      map( params => {
         if (params.has('id')) {
-          return params.get('id');
+          let id = params.get('id');
+          return id;
         } else {
           return null;
         }
@@ -40,14 +41,18 @@ export class SeleccionarPersonaComponent implements OnInit {
   }
 
   seleccionado(personas) {
-    let ids = personas.map( p => p.id);
-    this.subscriptions.push(this.id$.pipe(
-      switchMap( id => {
-        return this.navegar.navegar({
-          url: '/sistema/tutorias/asistencia/nueva/alta/'+id,
-          params: { ids: ids}
+    let ids = personas.map(p => p.id);
+    this.subscriptions.push(
+      combineLatest(this.id$, of(personas.map(p => p.id)))
+      .pipe(
+        map( resultados => {
+          let id = resultados[0];
+          let ids = resultados[1];
+          return this.navegar.navegar({
+            url: `/sistema/tutorias/asistencia/nueva/alta/${id}`,
+            params: { ids: ids }
+          })
         })
-      })
     ).subscribe());
   }
 

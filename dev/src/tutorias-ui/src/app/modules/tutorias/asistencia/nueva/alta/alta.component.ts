@@ -40,10 +40,15 @@ export class AltaComponent implements OnInit {
       this.route.paramMap,
       this.route.queryParamMap,
       (params: any, queryParams: any) => {
+        let data = params.get('data');
+        let p = JSON.parse(atob(data));
+        return p;
+        /*
         return {
           "id": params.has('id') ? params.get('id') : null,
-          "pids": queryParams.has('ids') ? queryParams.getAll('ids'): []
+          "ids": queryParams.has('ids') ? queryParams.getAll('ids'): []
         }
+        */
       }
     );
 

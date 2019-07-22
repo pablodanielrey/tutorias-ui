@@ -72,8 +72,12 @@ export class TutoriasService {
     return null;
   }
 
-  eliminarTutoria(id: string): Observable<boolean> {
-    return null;
+  eliminarTutoria(tid: string): Observable<boolean> {
+    let url = `${TUTORIAS_API_URL}/tutoria/${tid}`;
+    let req = this.http.delete<Response>(url).pipe(
+      map(r => r.response)
+    )
+    return req;
   }
 
   buscarTutoria(tid: string): Observable<Tutoria> {

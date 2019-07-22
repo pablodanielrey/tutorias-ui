@@ -22,6 +22,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
 import { EliminarComponent as EliminarAsistenciaComponent} from './modules/tutorias/asistencia/eliminar/eliminar.component';
+import { EliminarComponent as EliminarTutoriaComponent } from './modules/tutorias/eliminar/eliminar.component';
 
 
 @NgModule({
@@ -37,10 +38,12 @@ import { EliminarComponent as EliminarAsistenciaComponent} from './modules/tutor
     AltaComponent,
     EditarComponent,
     DetalleAsistenciaComponent,
-    EliminarAsistenciaComponent
+    EliminarAsistenciaComponent,
+    EliminarTutoriaComponent
   ],
   entryComponents: [
-    EliminarAsistenciaComponent
+    EliminarAsistenciaComponent,
+    EliminarTutoriaComponent
   ],
   imports: [
     BrowserModule,

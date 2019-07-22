@@ -14,7 +14,7 @@ export class EliminarComponent {
     @Inject(MAT_DIALOG_DATA) public data: AsistenciaTutoria,
     private service: TutoriasService) { }
 
-  eliminar_asistencia() {
+  eliminar() {
     this.service.eliminarAsistencia(this.data.id).subscribe( b => {
       this.dialogRef.close(b);
     })

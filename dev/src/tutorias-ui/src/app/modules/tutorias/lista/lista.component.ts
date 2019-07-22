@@ -3,9 +3,10 @@ import { NavegarService } from '../../../core/navegar.service';
 import { TutoriasService } from '../../../shared/services/tutorias.service';
 import { Tutoria } from '../../../shared/entities/tutoria';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { PageEvent, Sort, MatSort, MatPaginator } from '@angular/material';
+import { PageEvent, Sort, MatSort, MatPaginator, MatDialog } from '@angular/material';
 import { switchMap, map, tap, finalize } from 'rxjs/operators';
 import { PreloadService } from '../../../core/preload/preload.service';
+import { EliminarComponent } from '../eliminar/eliminar.component';
 
 @Component({
   selector: 'app-lista',
@@ -25,6 +26,7 @@ export class ListaComponent implements OnInit {
   tutorias_paginadas$: Observable<Array<Tutoria>> = null;
   tamano$: Observable<number>;
 
+  buscar$ = new BehaviorSubject<any>(null);
   ordenar$ = new BehaviorSubject<Sort>({active:'tutor',direction:''});
   pagina$ = new BehaviorSubject<PageEvent>({length: 0, pageIndex: 0, pageSize: 10});  
 
@@ -45,7 +47,8 @@ export class ListaComponent implements OnInit {
   constructor(
     private navegar: NavegarService,
     private service: TutoriasService,
-    private zone: NgZone
+    private zone: NgZone,
+    public dialog: MatDialog    
   ) { }
 
   private ordenar_por_tutor(a: Tutoria, b: Tutoria, direction: string) {
@@ -73,7 +76,7 @@ export class ListaComponent implements OnInit {
 
   ngOnInit() {
     this.cargando$.next(true);
-    this.tutorias$ = this.service.listarTutorias(null, null);
+    this.tutorias$ = this.buscar$.pipe(switchMap(_ => this.service.listarTutorias(null, null)));
     this.tamano$ = this.tutorias$.pipe(
       map(ts => (ts != null)? ts.length : 0)
     )
@@ -129,6 +132,18 @@ export class ListaComponent implements OnInit {
     }).subscribe(_ => {
       s.unsubscribe();
     })
+  }
+
+  eliminar(tutoria:Tutoria) {
+    const dialogRef = this.dialog.open(EliminarComponent, {
+      width: '250px',
+      data: tutoria
+    });
+    dialogRef.afterClosed().subscribe( res => {
+      if (res) {
+        this.buscar$.next(null);
+      }
+    });
   }
 
   crearTutoria() {

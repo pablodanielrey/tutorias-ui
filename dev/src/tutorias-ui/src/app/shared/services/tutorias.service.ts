@@ -98,8 +98,12 @@ export class TutoriasService {
     return null;
   }
 
-  eliminarAsistencia(id: string): Observable<boolean> {
-    return null;
+  eliminarAsistencia(aid: string): Observable<boolean> {
+    let url = `${TUTORIAS_API_URL}/asistencias/${aid}`;
+    let req = this.http.delete<Response>(url).pipe(
+      map(r => r.response)
+    )
+    return req;
   }
 
   agregarAsistencia(id: string, situacion_id: string, alumnos: string[]): Observable<string[]> {

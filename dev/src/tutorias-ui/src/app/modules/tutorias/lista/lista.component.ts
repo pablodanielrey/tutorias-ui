@@ -7,6 +7,7 @@ import { PageEvent, Sort, MatSort, MatPaginator, MatDialog } from '@angular/mate
 import { switchMap, map, tap, finalize } from 'rxjs/operators';
 import { PreloadService } from '../../../core/preload/preload.service';
 import { EliminarComponent } from '../eliminar/eliminar.component';
+import { UpdateService } from 'src/app/shared/services/update.service';
 
 @Component({
   selector: 'app-lista',
@@ -45,11 +46,12 @@ export class ListaComponent implements OnInit {
 
   
   constructor(
-    private navegar: NavegarService,
-    private service: TutoriasService,
-    private zone: NgZone,
-    public dialog: MatDialog    
-  ) { }
+              private navegar: NavegarService,
+              private service: TutoriasService,
+              private zone: NgZone,
+              public dialog: MatDialog) { 
+    
+    }
 
   private ordenar_por_tutor(a: Tutoria, b: Tutoria, direction: string) {
     let n1 = (direction == 'desc') ? a : b;

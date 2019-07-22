@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../environments/environment'
+import { UpdateService } from 'src/app/shared/services/update.service';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class InicioComponent implements OnInit {
   desarrolloSistema: string;
   logoSistema: string
 
-  constructor() {
+  constructor(private update: UpdateService) {
     this.tituloSistema = environment.loader.tituloSistema;
     this.subtituloSistema = environment.loader.subtituloSistema;
     this.desarrolloSistema = environment.loader.desarrolloSistema;
@@ -22,6 +23,7 @@ export class InicioComponent implements OnInit {
    }
 
   ngOnInit() {
+    this.update.checkForUpdate();
   }
 
 }

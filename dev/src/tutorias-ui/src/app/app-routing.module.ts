@@ -49,7 +49,8 @@ const routes: Routes = [
         ]
       }
      ]     
-  }  
+  },
+  { path: '**', redirectTo: '/loader' }
 ];
 
 @NgModule({

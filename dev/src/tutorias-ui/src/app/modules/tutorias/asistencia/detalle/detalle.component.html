@@ -60,8 +60,8 @@
 
     <div class="bloqueTabla">
 
-            <mat-card class="detalleCelular">
-                <div>  25/08/2019 - Tutor: Walter Blanco  </div>  
+            <mat-card *ngIf="(tutoria$ | async) as tutoria" class="detalleCelular">
+                <div>  {{ tutoria?.fecha | date:'dd/MM/yy' }} - Tutor: {{ tutoria?.tutor.nombre }} {{ (tutoria$ |async)?.tutor.apellido }}  </div>  
                 <div>  <button (click)="detalle()" mat-icon-button><mat-icon>zoom_in </mat-icon></button> </div>
             </mat-card>
 

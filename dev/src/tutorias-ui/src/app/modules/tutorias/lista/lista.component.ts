@@ -84,10 +84,9 @@ export class ListaComponent implements OnInit {
     this.tutorias_ordenadas$ = this.ordenar$.pipe(
       switchMap( orden => {
         return this.tutorias$.pipe(
-          tap(v => console.log(v)),
+          tap(_ => this.cargando$.next(true)),
           map( ts => ts.sort((a,b)=> {
             let s = orden;
-            console.log(s);
             switch(s['active']){
               case 'tutor': return this.ordenar_por_tutor(a, b, s["direction"]); break;
               case 'fecha': return this.ordenar_por_fecha(a ,b, s['direction']); break;
@@ -113,7 +112,7 @@ export class ListaComponent implements OnInit {
 
   ngAfterViewInit() {
     this.sort.sortChange.pipe(
-      tap(v => console.log(v))
+      tap(v => this.cargando$.next(true)),
     ).subscribe(s => {
       this.ordenar$.next(s);
     });

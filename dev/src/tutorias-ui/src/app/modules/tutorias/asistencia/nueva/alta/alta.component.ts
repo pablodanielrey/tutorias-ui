@@ -84,8 +84,10 @@ export class AltaComponent implements OnInit {
         this.preload.desactivar_preload_completo();
         let nav$ = this.modal.openInfoModal("Nueva Asistencia", "Se ha cargado exitosamente la asistencia").pipe(
           switchMap( v => {
+            console.log(res);
+            let tutoria_id = res['tutoria_id'];
             return this.navegar.navegar({
-              url: '/sistema/tutorias/asistencia/detalle/' + id,
+              url: '/sistema/tutorias/asistencia/detalle/' + tutoria_id,
               params: {}
             }, false)
           })

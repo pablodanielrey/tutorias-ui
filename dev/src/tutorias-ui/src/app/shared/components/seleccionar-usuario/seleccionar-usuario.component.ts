@@ -15,8 +15,8 @@ export class SeleccionarUsuarioComponent implements OnInit {
   @Output()
   seleccionado: EventEmitter<any[]> = new EventEmitter<any[]>();
 
-  private cargando: boolean = false;
-  private existen_resultados$: Observable<boolean>;
+  cargando: boolean = false;
+  existen_resultados$: Observable<boolean>;
   personas$: Observable<any[]>;
   seleccionados: any[] = [];
 

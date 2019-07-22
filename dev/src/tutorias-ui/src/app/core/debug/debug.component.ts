@@ -34,6 +34,8 @@ export class DebugComponent implements OnInit {
   permisos_faltantes$: Observable<Permiso[]> = null;
   permisos_denegados$: Observable<Permiso[]> = null;
 
+  perfiles$: Observable<any[]> = of();
+
   /* este codigo va del lado del servidor */
   // perfiles$: Observable<object[]> = of([
   //   {checked:false, permiso:Perfil.DEPARTAMENTO},

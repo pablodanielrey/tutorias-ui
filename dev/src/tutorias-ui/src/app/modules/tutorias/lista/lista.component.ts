@@ -3,11 +3,15 @@ import { NavegarService } from '../../../core/navegar.service';
 import { TutoriasService } from '../../../shared/services/tutorias.service';
 import { Tutoria } from '../../../shared/entities/tutoria';
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
-import { PageEvent, Sort, MatSort, MatPaginator, MatDialog } from '@angular/material';
+
 import { switchMap, map, tap, finalize } from 'rxjs/operators';
 import { PreloadService } from '../../../core/preload/preload.service';
 import { EliminarComponent } from '../eliminar/eliminar.component';
 import { UpdateService } from 'src/app/shared/services/update.service';
+
+import { MatSort, Sort } from '@angular/material/sort';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-lista',
@@ -16,8 +20,8 @@ import { UpdateService } from 'src/app/shared/services/update.service';
 })
 export class ListaComponent implements OnInit {
 
-  @ViewChild(MatSort, null) sort: MatSort;
-  @ViewChild(MatPaginator, null) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
   // displayedColumns: string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];
   columnasDesktop : string[] = ['tutor', 'fecha', 'alumnos', 'acciones'];

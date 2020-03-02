@@ -20,9 +20,10 @@ import { TutoriasService } from './shared/services/tutorias.service';
 import { SeleccionarUsuarioComponent } from './shared/components/seleccionar-usuario/seleccionar-usuario.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import { MatPaginatorModule, MAT_DATE_LOCALE } from '@angular/material';
 import { EliminarComponent as EliminarAsistenciaComponent} from './modules/tutorias/asistencia/eliminar/eliminar.component';
 import { EliminarComponent as EliminarTutoriaComponent } from './modules/tutorias/eliminar/eliminar.component';
+import { TutoriasMaterialModule } from './tutorias-material.module';
+import { MAT_DATE_LOCALE } from '@angular/material/core';
 
 
 @NgModule({
@@ -53,7 +54,8 @@ import { EliminarComponent as EliminarTutoriaComponent } from './modules/tutoria
     ReactiveFormsModule,    
     ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production }),
     CoreModule,
-    MatPaginatorModule
+    TutoriasMaterialModule,
+    BrowserAnimationsModule
   ],
   providers: [
     TutoriasService,

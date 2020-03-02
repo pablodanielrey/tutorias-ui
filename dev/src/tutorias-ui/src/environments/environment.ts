@@ -12,11 +12,11 @@ export const environment = {
   usuarioApiUrl: 'https://api.econo.unlp.edu.ar/users/api/v2.0',
 
   client_id: 'tutorias-ui',
-  version: '0.0.1a',
+  version: '0.0.2',
 
   loader: {
     cabecera: 'TUTORIAS | FCE',
-    version: '0.0.1a',
+    version: '0.0.2',
     tituloSistema: 'TUTORIAS',
     subtituloSistema: '',
     desarrolloSistema: 'DiTeSI | Dirección de Tecnologías y Sistemas Informáticos',

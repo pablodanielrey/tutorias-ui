@@ -5,8 +5,9 @@ import { AsistenciaTutoria, Tutoria } from '../../../../shared/entities/tutoria'
 import { TutoriasService } from '../../../../shared/services/tutorias.service';
 import { ActivatedRoute } from '@angular/router';
 import { switchMap, map, filter, tap } from 'rxjs/operators';
-import { MatDialog } from '@angular/material';
+
 import { EliminarComponent } from '../eliminar/eliminar.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-detalle',

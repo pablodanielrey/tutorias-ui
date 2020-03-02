@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { MatDialog } from '@angular/material';
+
 import { ErrorComponent } from './error/error.component'
 import { Observable } from 'rxjs';
 import { ConfirmComponent } from './confirm/confirm.component';
 import { WarningComponent } from './warning/warning.component';
 import { InfoComponent } from './info/info.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Injectable({
   providedIn: 'root'

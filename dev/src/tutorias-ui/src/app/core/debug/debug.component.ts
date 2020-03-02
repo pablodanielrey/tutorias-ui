@@ -91,7 +91,7 @@ export class DebugComponent implements OnInit {
     // this.actualizar_permisos$.next();
   }
 
-  private configurar_permiso(perm) {
+  configurar_permiso(perm) {
     let permiso = perm.permiso;
     console.log('seteando permiso como retornado ok: ' + permiso);
     if (perm.checked) {
@@ -102,7 +102,7 @@ export class DebugComponent implements OnInit {
     // this.actualizar_permisos$.next();
   }
 
-  private eliminar_permiso(perm) {
+  eliminar_permiso(perm) {
     this.permisos._delete(perm.permiso);
     // this.actualizar_permisos$.next();
   }
@@ -121,7 +121,7 @@ export class DebugComponent implements OnInit {
   //   }
   // }
 
-  private procesar_rutas(parent:string, rs:Route[]) {
+  procesar_rutas(parent:string, rs:Route[]) {
     rs.forEach(r => {
       if (r.children && r.children.length > 0) {
         this.procesar_rutas(parent + '/' + r.path, r.children);

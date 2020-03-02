@@ -2,38 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // <-- NgModel lives here
 
-import { MatButtonModule,
-         MatButtonToggleModule,
-         MatIconModule,
-         MatInputModule,
-         MatListModule,
-         MatDialogModule,
-         MatStepperModule,
-         MatMenuModule,
-         MatProgressBarModule,
-         MatProgressSpinnerModule,
-         MatSidenavModule,
-         MatToolbarModule,
-         MatDatepickerModule,
-         MatCardModule,
-         MatSlideToggleModule,
-         MatTableModule,
-         MatChipsModule,
-         MatSnackBarModule,
-         MatTabsModule,
-         MatSortModule,
-         MatSelectModule,
-         MatNativeDateModule,
-         MatTreeModule,
-         MatCheckboxModule,
-         MatTooltipModule,
-         MatBadgeModule,
-         MatAutocompleteModule,
-         MatExpansionModule,
-         MAT_DIALOG_DEFAULT_OPTIONS,
-         MAT_DIALOG_DATA
-       } from '@angular/material';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
@@ -60,7 +28,36 @@ import { DialogoComponent } from './dialogo/dialogo.component';
 import { InfoComponent } from './modal/info/info.component';
 import { WarningComponent } from './modal/warning/warning.component';
 import { ConfirmComponent } from './modal/confirm/confirm.component';
-
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule, MAT_DIALOG_DEFAULT_OPTIONS, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatCardModule } from '@angular/material/card';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatSelectModule } from '@angular/material/select';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatButtonToggleModule } from '@angular/material/button-toggle';
+import { MatListModule } from '@angular/material/list';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatChipsModule } from '@angular/material/chips';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatTableModule } from '@angular/material/table';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTabsModule } from '@angular/material/tabs';
+import { MatTreeModule } from '@angular/material/tree';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatPaginatorModule } from '@angular/material/paginator';
+ 
 
 const routes: Routes = [
   //{ path: 'error/:error', component: ErrorComponent },
@@ -121,6 +118,7 @@ const routes: Routes = [
     MatTooltipModule,
     MatBadgeModule,
     MatAutocompleteModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
@@ -162,6 +160,7 @@ const routes: Routes = [
     MatTooltipModule,
     MatBadgeModule,
     MatAutocompleteModule,
+    MatPaginatorModule,
     DialogoComponent
   ],
   providers: [

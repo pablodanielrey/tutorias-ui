@@ -2,8 +2,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap, debounceTime, distinctUntilChanged, filter, tap, map } from 'rxjs/operators';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { MatAutocompleteSelectedEvent } from '@angular/material';
+
 import { TutoriasService } from '../../services/tutorias.service';
+import { MatAutocompleteSelectedEvent } from '@angular/material/autocomplete';
 
 @Component({
   selector: 'app-seleccionar-usuario',
